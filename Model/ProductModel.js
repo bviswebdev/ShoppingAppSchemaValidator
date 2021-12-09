@@ -9,6 +9,14 @@ const categorySchema = Schema({
   catActive: { type: Boolean, default: true },
 });
 
+const fileSchema = Schema({
+  fileName: { type: String, required: true },
+  fileType: { type: String, required: true },
+  fileSize: { type: Number, required: true },
+  fileUrl: { type: String, required: true },
+  fileSource: { type: Buffer, required: true },
+});
+
 const productSchema = Schema({
   code: { type: String, required: true },
   name: { type: String, required: true },
@@ -16,11 +24,7 @@ const productSchema = Schema({
   description: { type: String, required: true },
   unitPrice: { type: Number, required: true },
   qunatity: { type: Number, required: true },
-  fileName: { type: String, required: true },
-  fileType: { type: String, required: true },
-  fileSize: { type: Number, required: true },
-  fileUrl: { type: String, required: true },
-  fileSource: { type: Buffer, required: true },
+  productImage: { type: fileSchema, required: true },
   isActive: { type: Boolean, required: true },
   category: { type: categorySchema, required: true },
   supplierId: { type: Schema.Types.ObjectId, ref: "User" },
