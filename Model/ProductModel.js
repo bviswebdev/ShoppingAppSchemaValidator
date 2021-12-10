@@ -23,7 +23,7 @@ const productSchema = Schema({
   brand: { type: String, required: true },
   description: { type: String, required: true },
   unitPrice: { type: Number, required: true },
-  qunatity: { type: Number, required: true },
+  quantity: { type: Number, required: true },
   productImage: { type: fileSchema, required: true },
   isActive: { type: Boolean, required: true },
   category: { type: categorySchema, required: true },
