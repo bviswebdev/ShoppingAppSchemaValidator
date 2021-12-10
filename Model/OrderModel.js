@@ -20,6 +20,10 @@ const orderSchema = Schema({
   orderDate: { type: Date, default: Date.now },
 });
 
+const orderModel = mongoose.model("Order", orderSchema);
+
+module.exports = { orderModel };
+
 /*
 export class Order {
   constructor(
