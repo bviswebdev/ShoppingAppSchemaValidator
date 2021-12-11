@@ -1,5 +1,5 @@
 const { bufferFile, writeFile, readStats } = require("../Utilities/FileUtil");
-const supplierTempId = "61b35b1ca467b05fa80fa405";
+const supplierTempId = "61b493cfc8e40e0ed9a242de";
 
 const productData = {
   code: "PRDABC123DEFX",

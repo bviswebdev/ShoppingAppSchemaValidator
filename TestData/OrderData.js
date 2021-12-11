@@ -1,8 +1,8 @@
-const userTempId = "61b35b1ca467b05fa80fa405";
-const shippingTempId = "61b35b1ca467b05fa80fa405";
-const billingTempId = "61b35b1ca467b05fa80fa405";
-const productTempId = "61b35b1ca467b05fa80fa405";
-const productTempIdTwo = "61b35b1ca467b05fa80fa405";
+const userTempId = "61b493cfc8e40e0ed9a242e0";
+const shippingTempId = "61b493cfc8e40e0ed9a242e1";
+const billingTempId = "61b493cfc8e40e0ed9a242e1";
+const productTempId = "61b49463d2e270f3f448d5cc";
+const productTempIdTwo = "61b49463d2e270f3f448d5cf";
 
 const orderData = {
   userId: userTempId,
@@ -30,7 +30,7 @@ const orderData = {
 
 const orderDataUpdate = {
   userId: userTempId,
-  orderTotal: 40.0,
+  orderTotal: 60.0,
   orderCount: 2,
   shippingId: shippingTempId,
   billingId: billingTempId,
