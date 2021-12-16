@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const Schema = mongoose.Schema;
 mongoose.pluralize(null);
 
@@ -18,10 +19,27 @@ const userSchema = Schema({
   lastName: { type: String, required: true },
   role: { type: String, required: true },
   enabled: { type: Boolean, defalut: false },
-  password: { type: String, required: true },
-  email: { type: String, required: true },
+  password: {
+    type: String,
+    required: [true, "Please provide password"],
+    minlength: 3,
+  },
+  email: {
+    type: String,
+    required: [true, "Please provide email"],
+    match: [
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      "Please provide a valid email",
+    ],
+    unique: true,
+  },
   contactNumber: { type: Number, retuired: true },
   addresses: { type: [addressSchema], default: () => [] },
+});
+
+userSchema.pre("save", async function () {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 const userModel = mongoose.model("User", userSchema);

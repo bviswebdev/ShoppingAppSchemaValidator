@@ -4,7 +4,12 @@ const { userController } = require("./Controller/UserController");
 const { productController } = require("./Controller/ProductController");
 const { cartController } = require("./Controller/CartController");
 const { orderController } = require("./Controller/OrderController");
-const { bufferFile, writeFile, readStats } = require("./Utilities/FileUtil");
+const {
+  bufferFile,
+  writeFile,
+  readStats,
+  bufferFileBase64,
+} = require("./Utilities/FileUtil");
 const Schema = mongoose.Schema;
 const url = "mongodb://localhost:27017/shoppingtestapp";
 
@@ -12,9 +17,12 @@ connectDatabase(url);
 
 const fileLoadTest = async () => {
   //const stats = fs.statSync("../Public/PRDABC123DEFX.jpg");
-  const stats = readStats("../Public/PRDABC123DEFX.jpg");
+  //const stats = readStats("../Public/PRDABC123DEFX.jpg");
   //let BUFFER = bufferFile("../Public/PRDABC123DEFX.jpg");
-
+  const stats = bufferFileBase64("../Public/PRDABC123DEFX.jpg");
+  writeFile("../Output/test.png", Buffer.from(stats, "base64"));
+  //let buff = new Buffer(stats, 'base64');
+  //fs.writeFileSync('stack-abuse-logo-out.png', buff);
   console.log(stats);
   //writeFile("../Output/test.png", BUFFER);
   /*writeFile(
@@ -33,10 +41,17 @@ const loadTestData = async () => {
   console.log("Load Test");
   try {
     //const insertUsers = await userController.loadUsers();
-    //const insertProducts = await productController.loadProducts();
+    //console.log(insertUsers);
+    const insertProducts = await productController.loadProducts();
+    console.log(insertProducts);
     //const insertCart = await cartController.loadCart();
     //const insertOrder = await orderController.loadOrder();
-
+    //const findProduct = await productController.findByProductId();
+    /*writeFile(
+      `../Output/${findProduct.productImage.fileName}.${findProduct.productImage.fileType}`,
+      findProduct.productImage.fileSource
+    );*/
+    //await fileLoadTest();
     //console.log(insertOrder);
     process.exit(0);
   } catch (e) {
