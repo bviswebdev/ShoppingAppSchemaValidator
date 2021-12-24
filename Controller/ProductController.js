@@ -6,6 +6,11 @@ const loadProducts = async () => {
   return insertProducts;
 };
 
+const loadUserProducts = async (products) => {
+  const insertProducts = await productModel.create(products);
+  return insertProducts;
+};
+
 const findProducts = async () => {
   const findProducts = await productModel.find({});
   return findProducts;
@@ -42,6 +47,7 @@ const productController = {
   findByProductId,
   updateByProductId,
   deleteByProductId,
+  loadUserProducts,
 };
 
 module.exports = { productController };

@@ -18,6 +18,13 @@ const findByUserId = async () => {
   return findUser;
 };
 
+const findByEmailId = async (emailId) => {
+  const findUser = await userModel.findOne({
+    email: emailId,
+  });
+  return findUser;
+};
+
 const updateByUserId = async () => {
   const updateUser = await userModel.findByIdAndUpdate(
     {
@@ -42,6 +49,7 @@ const userController = {
   findByUserId,
   updateByUserId,
   deleteByUserId,
+  findByEmailId,
 };
 
 module.exports = { userController };

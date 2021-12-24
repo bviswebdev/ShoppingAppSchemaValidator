@@ -4,6 +4,7 @@ const { userController } = require("./Controller/UserController");
 const { productController } = require("./Controller/ProductController");
 const { cartController } = require("./Controller/CartController");
 const { orderController } = require("./Controller/OrderController");
+const { prodData } = require("./TestData/ProductData");
 const {
   bufferFile,
   writeFile,
@@ -38,12 +39,17 @@ const fileLoadTest = async () => {
 };
 
 const loadTestData = async () => {
-  console.log("Load Test");
+  console.log("Load Test Data Starts");
   try {
-    //const insertUsers = await userController.loadUsers();
+    const insertUsers = await userController.loadUsers();
+    const userId = await userController.findByEmailId("vk@gmail.com");
+    const insertProducts = await productController.loadUserProducts(
+      prodData(userId._id)
+    );
+    console.log("Load Test Data Complete");
     //console.log(insertUsers);
-    const insertProducts = await productController.loadProducts();
-    console.log(insertProducts);
+    //const insertProducts = await productController.loadProducts();
+    //console.log(insertProducts);
     //const insertCart = await cartController.loadCart();
     //const insertOrder = await orderController.loadOrder();
     //const findProduct = await productController.findByProductId();
